@@ -1,10 +1,14 @@
+import { useMemo } from "react";
 import { CSSProperties } from "react";
 import { getHeroesByPublisher } from "../../selectors/getHeroById";
 import { Publisher } from "../../types/publisher";
 import HeroCard from "./HeroCard";
 
 const HeroesList = ({ publisher }: { publisher: Publisher }) => {
-  const heroesList = getHeroesByPublisher(publisher);
+  const heroesList = useMemo(
+    () => getHeroesByPublisher(publisher),
+    [publisher]
+  );
 
   const styles: CSSProperties = {
     display: "grid",

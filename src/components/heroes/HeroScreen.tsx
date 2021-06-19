@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getHeroById } from "../../selectors/getHeroesByPublisher";
 
@@ -5,10 +6,7 @@ const HeroScreen = () => {
   const { heroeId = "" }: { heroeId: string } = useParams();
   const history = useHistory();
 
-  console.log(history);
-  const hero = getHeroById(heroeId);
-
-  console.log(history.length);
+  const hero = useMemo(() => getHeroById(heroeId), [heroeId]);
 
   const handleClick = () =>
     history.length > 2 ? history.goBack() : history.push("/");
