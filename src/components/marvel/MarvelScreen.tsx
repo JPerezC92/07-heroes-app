@@ -1,11 +1,11 @@
-import React from "react";
+import HeroesList from "../heroes/HeroesList";
 
-interface Props {}
-
-const MarvelScreen = (props: Props) => {
+const MarvelScreen = () => {
   return (
     <div>
       <h1>Marvel Screen</h1>
+      <hr />
+      <HeroesList publisher="Marvel Comics" />
     </div>
   );
 };

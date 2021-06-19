@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {}
 
-const HeroeScreen = (props: Props) => {
+const HeroScreen = (props: Props) => {
   return (
     <div>
       <h1>Heroe Screen</h1>
@@ -10,4 +10,4 @@ const HeroeScreen = (props: Props) => {
   );
 };
 
-export default HeroeScreen;
+export default HeroScreen;

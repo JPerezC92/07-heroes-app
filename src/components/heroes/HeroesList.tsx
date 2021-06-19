@@ -1,0 +1,25 @@
+import { CSSProperties } from "react";
+import { getHeroesByPublisher } from "../../selectors/getHeroById";
+import { Publisher } from "../../types/publisher";
+import HeroCard from "./HeroCard";
+
+const HeroesList = ({ publisher }: { publisher: Publisher }) => {
+  const heroesList = getHeroesByPublisher(publisher);
+
+  const styles: CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, auto)",
+    justifyContent: "space-between",
+    gap: "15px",
+  };
+
+  return (
+    <div className="card-columns" style={styles}>
+      {heroesList.map((hero) => (
+        <HeroCard key={hero.id} {...hero} />
+      ))}
+    </div>
+  );
+};
+
+export default HeroesList;
