@@ -18,7 +18,10 @@ const HeroesList = ({ publisher }: { publisher: Publisher }) => {
   };
 
   return (
-    <div className="card-columns" style={styles}>
+    <div
+      className="card-columns animate__animated animate__fadeIn"
+      style={styles}
+    >
       {heroesList.map((hero) => (
         <HeroCard key={hero.id} {...hero} />
       ))}
