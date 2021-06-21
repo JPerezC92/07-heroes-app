@@ -1,20 +1,22 @@
-import { IAuthContext } from "./AuthContext";
+import { initialAuthContextState, IUser } from "./AuthContext";
 
-enum ActionType {
+export enum AuthActionType {
   login = "[auth] login",
   logout = "[auth] logout",
 }
 
-export const authReducer = (
-  state: IAuthContext,
-  action: { type: ActionType; payload: ObjectConstructor }
-): IAuthContext => {
+export type AuthAction = {
+  type: AuthActionType;
+  payload: Omit<IUser, "logged">;
+};
+
+export const authReducer = (state: IUser, action: AuthAction): IUser => {
   switch (action.type) {
-    case ActionType.login:
+    case AuthActionType.login:
       return { ...action.payload, logged: true };
 
-    case ActionType.logout:
-      return { logged: false };
+    case AuthActionType.logout:
+      return initialAuthContextState;
 
     default:
       return state;

@@ -1,10 +1,17 @@
 import { RouteComponentProps } from "react-router-dom";
+import { useAuthState } from "../../auth/AuthContext";
+import { AuthActionType } from "../../auth/AuthReducer";
 
 interface Props extends RouteComponentProps {}
 
 const LoginScreen = ({ history }: Props) => {
+  const { dispatch } = useAuthState();
+
   const handleLogin = () => {
-    console.log("click");
+    dispatch({
+      type: AuthActionType.login,
+      payload: { name: "Philip" },
+    });
     history.push("/");
   };
 

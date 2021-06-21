@@ -1,23 +1,31 @@
-import React, { createContext, useContext, useReducer } from "react";
-import { authReducer } from "./AuthReducer";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
+import { AuthAction, authReducer } from "./AuthReducer";
 
-export interface IAuthContext {
+export interface IUser {
   logged: boolean;
+  name: string | null;
 }
 
-const initialAuthContextState = { logged: false };
+interface IAuthContext extends IUser {
+  dispatch: React.Dispatch<AuthAction>;
+}
 
-const AuthContext = createContext<IAuthContext>(initialAuthContextState);
+export const initialAuthContextState = {
+  logged: false,
+  name: null,
+} as IAuthContext;
+
+const AuthContext = createContext(initialAuthContextState);
 
 const useAuthState = () => {
   const context = useContext(AuthContext);
   return context;
 };
 
-const init = (initialState: IAuthContext) => {
+const init = (initialState: IUser) => {
   const userStorageString = localStorage.getItem("user");
 
-  if (userStorageString) return JSON.parse(userStorageString) as IAuthContext;
+  if (userStorageString) return JSON.parse(userStorageString) as IUser;
 
   return initialState;
 };
@@ -29,7 +37,9 @@ const AuthContextProvider: React.FC = ({ children }) => {
     init
   );
 
-  const value = { ...user, dispatch };
+  const value: IAuthContext = { ...user, dispatch };
+
+  useEffect(() => localStorage.setItem("user", JSON.stringify(user)), [user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
