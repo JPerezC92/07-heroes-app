@@ -8,11 +8,12 @@ const LoginScreen = ({ history }: Props) => {
   const { dispatch } = useAuthState();
 
   const handleLogin = () => {
+    history.replace("/");
+
     dispatch({
       type: AuthActionType.login,
       payload: { name: "Philip" },
     });
-    history.push("/");
   };
 
   return (
