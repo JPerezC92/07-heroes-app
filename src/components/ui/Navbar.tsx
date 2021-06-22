@@ -1,8 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { useAuthState } from "../../auth/AuthContext";
+import { AuthActionType } from "../../auth/AuthReducer";
 
 const Navbar = () => {
-  const { name } = useAuthState();
+  const { name, dispatch } = useAuthState();
+  const history = useHistory();
+
+  const handleLogout = () => {
+    dispatch({ type: AuthActionType.logout });
+    history.replace("./login");
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
@@ -49,14 +57,9 @@ const Navbar = () => {
         <ul className="navbar-nav ml-auto">
           <span className="nav-item nav-link text-info">{name}</span>
 
-          <NavLink
-            activeClassName="active"
-            className="nav-item nav-link"
-            exact
-            to="/login"
-          >
+          <button className="nav-item nav-link btn" onClick={handleLogout}>
             Logout
-          </NavLink>
+          </button>
         </ul>
       </div>
     </nav>
