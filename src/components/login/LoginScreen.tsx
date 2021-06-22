@@ -1,6 +1,7 @@
 import { RouteComponentProps } from "react-router-dom";
 import { useAuthState } from "../../auth/AuthContext";
 import { AuthActionType } from "../../auth/AuthReducer";
+import LocalStorageService from "../../services/LocalStorageService";
 
 interface Props extends RouteComponentProps {}
 
@@ -8,7 +9,7 @@ const LoginScreen = ({ history }: Props) => {
   const { dispatch } = useAuthState();
 
   const handleLogin = () => {
-    history.replace("/");
+    history.replace(LocalStorageService.get<string>("pathname") || "/");
 
     dispatch({
       type: AuthActionType.login,
