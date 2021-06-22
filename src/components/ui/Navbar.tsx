@@ -3,7 +3,7 @@ import { useAuthState } from "../../auth/AuthContext";
 import { AuthActionType } from "../../auth/AuthReducer";
 
 const Navbar = () => {
-  const { name, dispatch } = useAuthState();
+  const { user, dispatch } = useAuthState();
   const history = useHistory();
 
   const handleLogout = () => {
@@ -55,7 +55,7 @@ const Navbar = () => {
         }}
       >
         <ul className="navbar-nav ml-auto">
-          <span className="nav-item nav-link text-info">{name}</span>
+          <span className="nav-item nav-link text-info">{user.name}</span>
 
           <button className="nav-item nav-link btn" onClick={handleLogout}>
             Logout

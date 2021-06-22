@@ -6,7 +6,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
 const AppRouter = () => {
-  const { logged } = useAuthState();
+  const { user } = useAuthState();
 
   return (
     <div>
@@ -15,12 +15,12 @@ const AppRouter = () => {
           <Switch>
             <PublicRoute
               exact
-              isAuthenticated={logged}
+              isAuthenticated={user.logged}
               path="/login"
               Component={LoginScreen}
             />
             <PrivateRoute
-              isAuthenticated={logged}
+              isAuthenticated={user.logged}
               path="/"
               Component={DashboardRoutes}
             />

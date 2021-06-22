@@ -6,16 +6,20 @@ export interface IUser {
   name: string | null;
 }
 
-interface IAuthContext extends IUser {
+export interface IAuthContext {
+  user: IUser;
   dispatch: React.Dispatch<AuthAction>;
 }
 
-export const initialAuthContextState = {
+export const initialAuthContextState: IUser = {
   logged: false,
   name: null,
-} as IAuthContext;
+};
 
-const AuthContext = createContext(initialAuthContextState);
+const AuthContext = createContext<IAuthContext>({
+  user: initialAuthContextState,
+  dispatch: () => null,
+});
 
 const useAuthState = () => {
   const context = useContext(AuthContext);
@@ -37,7 +41,7 @@ const AuthContextProvider: React.FC = ({ children }) => {
     init
   );
 
-  const value: IAuthContext = { ...user, dispatch };
+  const value: IAuthContext = { user, dispatch };
 
   useEffect(() => localStorage.setItem("user", JSON.stringify(user)), [user]);
 
