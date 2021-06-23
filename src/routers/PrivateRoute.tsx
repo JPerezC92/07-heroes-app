@@ -5,7 +5,6 @@ import {
   RouteComponentProps,
   RouteProps,
 } from "react-router-dom";
-import { useAuthState } from "../auth/AuthContext";
 import LocalStorageService from "../services/LocalStorageService";
 
 interface Props extends RouteProps {
@@ -15,14 +14,13 @@ interface Props extends RouteProps {
 }
 
 const PrivateRoute = ({ isAuthenticated, Component, ...rest }: Props) => {
-  const { user } = useAuthState();
   const pathname = rest.location?.pathname! || "";
 
   useEffect(() => {
-    if (user.logged && pathname.length > 0) {
+    if (isAuthenticated && pathname.length > 0) {
       LocalStorageService.save<string>("pathname", pathname);
     }
-  }, [pathname, user.logged]);
+  }, [pathname, isAuthenticated]);
 
   return (
     <Route
