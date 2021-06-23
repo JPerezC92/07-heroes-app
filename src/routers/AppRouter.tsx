@@ -9,25 +9,23 @@ const AppRouter = () => {
   const { user } = useAuthState();
 
   return (
-    <div>
-      <Router>
-        <div>
-          <Switch>
-            <PublicRoute
-              exact
-              isAuthenticated={user.logged}
-              path="/login"
-              Component={LoginScreen}
-            />
-            <PrivateRoute
-              isAuthenticated={user.logged}
-              path="/"
-              Component={DashboardRoutes}
-            />
-          </Switch>
-        </div>
-      </Router>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <PublicRoute
+            exact
+            isAuthenticated={user.logged}
+            path="/login"
+            Component={LoginScreen}
+          />
+          <PrivateRoute
+            isAuthenticated={user.logged}
+            path="/"
+            Component={DashboardRoutes}
+          />
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
