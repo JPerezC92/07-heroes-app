@@ -10,8 +10,8 @@ export type AuthAction = {
   payload?: Omit<IUser, "logged">;
 };
 
-export const authReducer = (state: IUser, action: AuthAction): IUser => {
-  switch (action.type) {
+export const authReducer = (state: IUser, action?: AuthAction): IUser => {
+  switch (action?.type) {
     case AuthActionType.login:
       return { ...action.payload!, logged: true };
 
