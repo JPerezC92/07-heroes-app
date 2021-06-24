@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { CSSProperties } from "react";
-import { getHeroesByPublisher } from "../../selectors/getHeroById";
+import { getHeroesByPublisher } from "../../selectors/getHeroesByPublisher";
 import { Publisher } from "../../types/publisher";
 import HeroCard from "./HeroCard";
 

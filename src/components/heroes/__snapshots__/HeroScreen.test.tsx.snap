@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test on <HeroScreen /> should render a hero if param exists 1`] = `
+<div
+  className="row mt-5"
+>
+  <div
+    className="col-4"
+  >
+    <img
+      alt="Batman"
+      className="img-thumbnail animate__animated animate__fadeInLeft"
+      src="../assets/heroes/dc-batman.jpg"
+    />
+  </div>
+  <div
+    className="col-8"
+  >
+    <ul
+      className="list-group list-group-flush"
+    >
+      <li
+        className="list-group-item"
+      >
+        <b>
+          Alter ego:
+        </b>
+         
+        Bruce Wayne
+      </li>
+      <li
+        className="list-group-item"
+      >
+        <b>
+          Publisher:
+        </b>
+         
+        DC Comics
+      </li>
+      <li
+        className="list-group-item"
+      >
+        <b>
+          First Appearance:
+        </b>
+         
+        Detective Comics #27
+      </li>
+    </ul>
+    <h5>
+      Characters
+    </h5>
+    <p>
+      Bruce Wayne
+    </p>
+    <button
+      className="btn btn-outline-info"
+      onClick={[Function]}
+    >
+      Return
+    </button>
+  </div>
+</div>
+`;

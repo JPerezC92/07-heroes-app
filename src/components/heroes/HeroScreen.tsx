@@ -1,10 +1,9 @@
 import { useMemo } from "react";
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import { getHeroById } from "../../selectors/getHeroesByPublisher";
+import { Redirect, RouteComponentProps, useParams } from "react-router-dom";
+import { getHeroById } from "../../selectors/getHeroById";
 
-const HeroScreen = () => {
+const HeroScreen = ({ history }: RouteComponentProps) => {
   const { heroeId = "" }: { heroeId: string } = useParams();
-  const history = useHistory();
 
   const hero = useMemo(() => getHeroById(heroeId), [heroeId]);
 
