@@ -1,15 +1,15 @@
 import { mount } from "enzyme";
 
 import { MemoryRouter, Route } from "react-router-dom";
-import { heroScreenPropsFixture } from "../../test/fixtures/heroScreenPropsFixture";
+import { routeComponentPropsFixture } from "../../test/fixtures/routeComponentPropsFixture";
 import HeroScreen from "./HeroScreen";
 
 describe("Test on <HeroScreen />", () => {
   test("should render <Redirect /> component if isn't arguments on URL'", () => {
     const HeroScreenProps = {
-      ...heroScreenPropsFixture,
+      ...routeComponentPropsFixture,
       history: {
-        ...heroScreenPropsFixture.history,
+        ...routeComponentPropsFixture.history,
         length: 10,
         push: jest.fn(),
         goBack: jest.fn(),
@@ -38,9 +38,9 @@ describe("Test on <HeroScreen />", () => {
 
   test("should redirect with push()", () => {
     const HeroScreenProps = {
-      ...heroScreenPropsFixture,
+      ...routeComponentPropsFixture,
       history: {
-        ...heroScreenPropsFixture.history,
+        ...routeComponentPropsFixture.history,
         length: 1,
         push: jest.fn(),
         goBack: jest.fn(),
@@ -64,9 +64,9 @@ describe("Test on <HeroScreen />", () => {
 
   test("should redirect with goBack()", () => {
     const HeroScreenProps = {
-      ...heroScreenPropsFixture,
+      ...routeComponentPropsFixture,
       history: {
-        ...heroScreenPropsFixture.history,
+        ...routeComponentPropsFixture.history,
         length: 10,
         push: jest.fn(),
         goBack: jest.fn(),
@@ -90,9 +90,9 @@ describe("Test on <HeroScreen />", () => {
 
   test("should render <Redirect /> component if hero does not exists", () => {
     const heroScreenProps = {
-      ...heroScreenPropsFixture,
+      ...routeComponentPropsFixture,
       history: {
-        ...heroScreenPropsFixture.history,
+        ...routeComponentPropsFixture.history,
         length: 10,
         push: jest.fn(),
         goBack: jest.fn(),

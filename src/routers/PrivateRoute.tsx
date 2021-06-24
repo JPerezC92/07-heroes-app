@@ -18,7 +18,7 @@ const PrivateRoute = ({ isAuthenticated, Component, ...rest }: Props) => {
 
   useEffect(() => {
     if (isAuthenticated && pathname.length > 0) {
-      LocalStorageService.save<string>("pathname", pathname);
+      LocalStorageService.save<string>("lastpath", pathname);
     }
   }, [pathname, isAuthenticated]);
 

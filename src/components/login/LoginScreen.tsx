@@ -3,13 +3,13 @@ import { useAuthState } from "../../auth/AuthContext";
 import { AuthActionType } from "../../auth/AuthReducer";
 import LocalStorageService from "../../services/LocalStorageService";
 
-interface Props extends RouteComponentProps {}
-
-const LoginScreen = ({ history }: Props) => {
+const LoginScreen = ({ history }: RouteComponentProps) => {
   const { dispatch } = useAuthState();
 
+  const lastpath = LocalStorageService.get<string>("lastpath") || "/";
+
   const handleLogin = () => {
-    history.replace(LocalStorageService.get<string>("pathname") || "/");
+    history.replace(lastpath);
 
     dispatch({
       type: AuthActionType.login,

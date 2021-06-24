@@ -25,7 +25,7 @@ describe("Test on <PrivateRoute />", () => {
     expect(wrapper.find("span").exists()).toBe(true);
 
     expect(LocalStorageService.save).toHaveBeenCalledWith(
-      "pathname",
+      "lastpath",
       "/marvel"
     );
   });

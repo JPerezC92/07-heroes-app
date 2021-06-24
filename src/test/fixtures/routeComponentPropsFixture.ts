@@ -1,10 +1,10 @@
 import { createMemoryHistory } from "history";
 
-const heroScreenPropsFixture = {
+const routeComponentPropsFixture = {
   history: createMemoryHistory(),
   location: "" as any,
   match: {} as any,
   staticContext: {} as any,
 };
 
-export { heroScreenPropsFixture };
+export { routeComponentPropsFixture };

@@ -1,9 +1,9 @@
 class LocalStorageService {
-  static get<T>(key: string): T {
+  static get<T>(key: string): T | null {
     const value = localStorage.getItem(key);
 
     if (value) return JSON.parse(value);
-    throw new Error(`Item not found: ${key} `);
+    return null;
   }
 
   static save<T>(key: string, value: T) {
