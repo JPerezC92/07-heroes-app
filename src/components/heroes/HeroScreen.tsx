@@ -1,14 +1,21 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Redirect, RouteComponentProps, useParams } from "react-router-dom";
+import { dynamicImportImg } from "../../helper/dynamicImportImg";
 import { getHeroById } from "../../selectors/getHeroById";
 
 const HeroScreen = ({ history }: RouteComponentProps) => {
   const { heroeId = "" }: { heroeId: string } = useParams();
-
+  const [heroImage, setHeroImage] = useState("");
   const hero = useMemo(() => getHeroById(heroeId), [heroeId]);
 
   const handleClick = () =>
     history.length > 2 ? history.goBack() : history.push("/");
+
+  useEffect(() => {
+    if (heroeId.length > 0) {
+      dynamicImportImg(heroeId).then((img) => setHeroImage(() => img));
+    }
+  }, [heroeId]);
 
   if (!hero) return <Redirect to="/" />;
 
@@ -17,7 +24,7 @@ const HeroScreen = ({ history }: RouteComponentProps) => {
       <div className="col-4">
         <img
           className="img-thumbnail animate__animated animate__fadeInLeft"
-          src={`../assets/heroes/${heroeId}.jpg`}
+          src={heroImage}
           alt={hero.superhero}
         />
       </div>
